@@ -43,7 +43,11 @@ WHERE employees.employee_id>3 AND employees.employee_id<=10
 
 -- 4)Згрупуйте за іменем категорії, порахуйте кількість рядків у групі, 
 -- середню кількість товару (кількість товару знаходиться в order_details.quantity)
-SELECT categories.name, COUNT(*) as total FROM orders
+SELECT 
+	categories.name, 
+    COUNT(*) as total,
+    AVG(order_details.quantity) as avg_quantity
+FROM orders
 INNER JOIN customers ON orders.customer_id = customers.id
 INNER JOIN employees ON orders.employee_id = employees.employee_id
 INNER JOIN shippers ON orders.shipper_id = shippers.id
